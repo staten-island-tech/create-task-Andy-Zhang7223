@@ -11,10 +11,10 @@ let Playershand = [];
 
 function gamestart() {
   while (Dealershand.length < 2) {
-    Dealershand.push(Randomnumber(1, 11));
+    Dealershand.push(Randomnumber(1, 12));
   }
   while (Playershand.length < 2) {
-    Playershand.push(Randomnumber(1, 11));
+    Playershand.push(Randomnumber(1, 12));
   }
 }
 
@@ -71,15 +71,16 @@ function winning() {
       "afterbegin",
       `<p class="winner">You Win! Reload The Page to Play Again!</p>`,
     );
-  }
-  else if (Playershand > 21 || Dealershand > Playershand && Dealershand <= 21) {
+  } else if (
+    Playershand > 21 ||
+    (Dealershand > Playershand && Dealershand <= 21)
+  ) {
     const dealerhanddiv = document.querySelector(".Dealer");
     dealerhanddiv.insertAdjacentHTML(
       "afterbegin",
       `<p class="loser">You Lose! Reload The Page to Play Again!</p>`,
     );
-  }
-  else {
+  } else {
     const playerhanddiv = document.querySelector(".Player");
     playerhanddiv.insertAdjacentHTML(
       "afterbegin",
@@ -90,10 +91,20 @@ function winning() {
 
 function actions() {
   const Hit = document.querySelector(".Hit");
+  let dealertotal = 0;
+  Dealershand.forEach((card) => (dealertotal = dealertotal + card));
   Hit.addEventListener("click", function () {
-    Playershand.push(Randomnumber(1, 11));
+    Playershand.push(Randomnumber(1, 12));
     Playershandtotal(Playershand);
   });
   const Stand = document.querySelector(".Stand");
-  Stand.addEventListener("click", function)
+  Stand.addEventListener("click", function () {
+    while (dealertotal < 17) {
+      console.log(Dealershand, Dealershand.length);
+      Dealershand.push(Randomnumber(1, 12));
+    }
+    winning();
+  });
 }
+
+actions();
