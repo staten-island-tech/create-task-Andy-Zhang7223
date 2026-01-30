@@ -95,3 +95,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.Dealer {
+  margin: 50px;
+}
+
+.Player {
+  margin: 50px;
+}
