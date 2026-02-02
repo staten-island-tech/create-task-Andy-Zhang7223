@@ -17,7 +17,7 @@ function gamestart() {
   Dealerhanddiv.insertAdjacentHTML(
     "afterbegin",
     `<p class="Dealerscard">${Dealershand[0]}</p>
-      <p class="Dealerscard">(Unknown Card :D)</p>`,
+      <p class="Dealerscard">(Unknown Card >:D)</p>`,
   );
   while (Playershand.length < 2) {
     Playershand.push(Randomnumber(1, 12));
@@ -118,28 +118,27 @@ function actions() {
   Stand.addEventListener("click", function () {
     let playertotal = 0;
     Playershand.forEach((card) => (playertotal = playertotal + card));
-    if (playertotal < 21) {
+    if (playertotal <= 21) {
       while (dealertotal < 17) {
         Dealershand.push(Randomnumber(1, 12));
         Dealershandtotal(Dealershand);
         dealertotal = 0;
         Dealershand.forEach((card) => (dealertotal = dealertotal + card));
-        const oldDealerscards = document.querySelectorAll(".Dealerscard");
-        oldDealerscards.forEach((oldcard) => oldcard.remove());
-        const dealerhanddiv = document.querySelector(".Dealer");
-        Dealershand.forEach((card) => {
-          dealerhanddiv.insertAdjacentHTML(
-            "afterbegin",
-            `<p class="Dealerscard">${card}</p>`,
-          );
-        });
-        console.log(dealertotal);
       }
     }
+    const oldDealerscards = document.querySelectorAll(".Dealerscard");
+    oldDealerscards.forEach((oldcard) => oldcard.remove());
     const dealerhanddiv = document.querySelector(".Dealer");
+    Dealershand.forEach((card) => {
+      dealerhanddiv.insertAdjacentHTML(
+        "afterbegin",
+        `<p class="Dealerscard">${card}</p>`,
+      );
+    });
+    console.log(dealertotal);
     dealerhanddiv.insertAdjacentHTML(
       "afterbegin",
-      `<p class="Dealerstotal>Total:${dealertotal}</p>`,
+      `<p class="Dealerstotal">Total:${dealertotal}</p>`,
     );
     winning();
   });
