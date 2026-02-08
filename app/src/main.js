@@ -52,7 +52,6 @@ Playershandtotal(Playershand);
 
 function Dealershandtotal(dealerhand) {
   const Dealershandtotalp = document.querySelector(".Dealershandtotal");
-  const dealerhanddiv = document.querySelector(".Dealer");
   if (Dealershandtotalp) {
     Dealershandtotalp.remove();
   }
